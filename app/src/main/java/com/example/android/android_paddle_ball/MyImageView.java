@@ -17,10 +17,10 @@ import android.view.View;
 public class MyImageView extends View {
     private static final int INVALID_POINTER_ID = -1;
 
-    private final int initX = 200;
-    private final int initY = 600;
+    private final int initX = 215;
+    private final int initY = 700;
 
-    private Drawable mImageBall;
+    //private Drawable mImageBall;
     private Drawable mImagePaddle;
     private float mPosX;
     private float mPosY;
@@ -39,8 +39,8 @@ public class MyImageView extends View {
 
     private void init(Context context){
         // left, top, right, bottom
-        mImageBall = getResources().getDrawable(R.drawable.ball, null);
-        mImageBall.setBounds(0, 0, mImageBall.getIntrinsicWidth(), mImageBall.getIntrinsicHeight());
+        //mImageBall = getResources().getDrawable(R.drawable.ball, null);
+        //mImageBall.setBounds(0, 0, mImageBall.getIntrinsicWidth(), mImageBall.getIntrinsicHeight());
 
         mImagePaddle = getResources().getDrawable(R.drawable.paddle, null);
         mImagePaddle.setBounds(0,0, mImagePaddle.getIntrinsicWidth(), mImagePaddle.getIntrinsicHeight());
@@ -121,7 +121,7 @@ public class MyImageView extends View {
         Log.d("DEBUG" , "X: " +mPosX + " Y: " + mPosY);
         canvas.translate(mPosX, mPosY);
         canvas.scale(mScaleFactor, mScaleFactor);
-        mImageBall.draw(canvas);
+        //mImageBall.draw(canvas);
         mImagePaddle.draw(canvas);
         canvas.restore();
     }

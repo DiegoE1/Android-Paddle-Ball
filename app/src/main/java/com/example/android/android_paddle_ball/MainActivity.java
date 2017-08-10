@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView mTextPoints;
     private ImageView mTopBorder;
     private MyImageView mGameCanvas;
+    private GameView mGanvas;
 
 
     @Override
@@ -34,12 +35,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mTextPoints = (TextView) findViewById(R.id.tv_number_points);
         mTopBorder = (ImageView) findViewById(R.id.image_top_screen);
         mGameCanvas = (MyImageView) findViewById(R.id.game_canvas);
+        mGanvas = (GameView) findViewById(R.id.ganvas);
 
         mPlayGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setViewsVisible();
-                //new MyImageView(MainActivity.this);
             }
         });
     }
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mTextPoints.setVisibility(View.VISIBLE);
         mTopBorder.setVisibility(View.VISIBLE);
         mGameCanvas.setVisibility(View.VISIBLE);
-
+        mGanvas.setVisibility(View.VISIBLE);
     }
 
     @Override

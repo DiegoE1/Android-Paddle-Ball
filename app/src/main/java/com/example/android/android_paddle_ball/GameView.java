@@ -13,7 +13,7 @@ import android.view.View;
  */
 
 public class GameView extends View{
-    private Paint rect;
+    //private Paint rect;
     private Paint circ;
     private final int radius = 25;
     public GameView(Context context, @Nullable AttributeSet attrs) {
@@ -24,13 +24,13 @@ public class GameView extends View{
     }
 
     private void init() {
-        rect = new Paint();
+        //rect = new Paint();
         circ = new Paint();
 
-        rect.setStyle(Paint.Style.FILL);
+        //rect.setStyle(Paint.Style.FILL);
         circ.setStyle(Paint.Style.FILL);
 
-        rect.setColor(Color.BLACK);
+        //rect.setColor(Color.BLACK);
         circ.setColor(Color.BLUE);
     }
 
@@ -39,9 +39,15 @@ public class GameView extends View{
         super.onDraw(canvas);
 
 //left, top, right, bottom
-        canvas.drawRect(250, 700, 550, 750, rect);
+        //canvas.drawRect(250, 700, 550, 750, rect);
 //        x, y,
         canvas.drawCircle(360, 675, radius, circ);
 
+    }
+
+    private void launchGame(){
+        //to do
+        //invisible button to press with text asking to press
+        //send ball off to collide with walls
     }
 }
