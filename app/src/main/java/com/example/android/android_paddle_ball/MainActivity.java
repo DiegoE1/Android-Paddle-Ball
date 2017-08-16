@@ -16,10 +16,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager mSensorManager;
 
     private Button mPlayGame;
+    private Button mClickToStart;
     private TextView mTextLives;
     private TextView mTextPoints;
     private ImageView mTopBorder;
-    private MyImageView mGameCanvas;
+    //private MyImageView mGameCanvas;
     private GameView mGanvas;
 
 
@@ -33,8 +34,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mPlayGame = (Button) findViewById(R.id.button_play_game);
         mTextLives = (TextView) findViewById(R.id.tv_number_lives);
         mTextPoints = (TextView) findViewById(R.id.tv_number_points);
+        mClickToStart = (Button) findViewById(R.id.button_click_to_start);
         mTopBorder = (ImageView) findViewById(R.id.image_top_screen);
-        mGameCanvas = (MyImageView) findViewById(R.id.game_canvas);
+        //mGameCanvas = (MyImageView) findViewById(R.id.game_canvas);
         mGanvas = (GameView) findViewById(R.id.ganvas);
 
         mPlayGame.setOnClickListener(new View.OnClickListener() {
@@ -43,14 +45,24 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 setViewsVisible();
             }
         });
+        mClickToStart.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mClickToStart.setVisibility(View.INVISIBLE);
+                //startGame();
+
+            }
+        });
     }
 
     private void setViewsVisible(){
         mPlayGame.setVisibility(View.INVISIBLE);
         mTextLives.setVisibility(View.VISIBLE);
         mTextPoints.setVisibility(View.VISIBLE);
+        mClickToStart.setVisibility(View.VISIBLE);
         mTopBorder.setVisibility(View.VISIBLE);
-        mGameCanvas.setVisibility(View.VISIBLE);
+        //mGameCanvas.setVisibility(View.VISIBLE);
         mGanvas.setVisibility(View.VISIBLE);
     }
 

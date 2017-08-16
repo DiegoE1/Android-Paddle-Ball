@@ -3,4 +3,5 @@
     <string name="number_lives">Lives:</string>
     <string name="number_points">Points:</string>
     <string name="play_game">Play</string>
+    <string name="click_to_start">Click to Start</string>
 </resources>
