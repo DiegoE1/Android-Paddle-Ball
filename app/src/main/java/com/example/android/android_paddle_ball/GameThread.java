@@ -16,6 +16,10 @@ public class GameThread extends Thread {
     private Paint mPaint;
     private GameState mState;
 
+    public GameThread(){
+        mState = new GameState();
+    }
+
     public GameThread(SurfaceHolder surfaceHolder, Context context, Handler handler){
         mSurfaceHolder = surfaceHolder;
         mPaint = new Paint();
@@ -29,7 +33,6 @@ public class GameThread extends Thread {
             mState.update();
             mState.draw(canvas, mPaint);
             mSurfaceHolder.unlockCanvasAndPost(canvas);
-            //Log.i("running", "gameThread");
         }
     }
 

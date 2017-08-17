@@ -1,8 +1,5 @@
 package com.example.android.android_paddle_ball;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
+public class MainActivity extends AppCompatActivity /*implements SensorEventListener*/ {
 
     private SensorManager mSensorManager;
 
@@ -20,9 +17,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView mTextLives;
     private TextView mTextPoints;
     private ImageView mTopBorder;
-    //private MyImageView mGameCanvas;
     private GameView mGanvas;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +29,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mPlayGame = (Button) findViewById(R.id.button_play_game);
         mTextLives = (TextView) findViewById(R.id.tv_number_lives);
         mTextPoints = (TextView) findViewById(R.id.tv_number_points);
-        mClickToStart = (Button) findViewById(R.id.button_click_to_start);
+        //mClickToStart = (Button) findViewById(R.id.button_click_to_start);
         mTopBorder = (ImageView) findViewById(R.id.image_top_screen);
-        //mGameCanvas = (MyImageView) findViewById(R.id.game_canvas);
         mGanvas = (GameView) findViewById(R.id.ganvas);
 
         mPlayGame.setOnClickListener(new View.OnClickListener() {
@@ -45,34 +39,35 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 setViewsVisible();
             }
         });
-        mClickToStart.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                mClickToStart.setVisibility(View.INVISIBLE);
-                //startGame();
-
-            }
-        });
+//        mClickToStart.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                mClickToStart.setVisibility(View.INVISIBLE);
+//                Log.d("Clicked to start", "right before startGame()");
+//                gameState.startGame();
+//                Log.d("After startGame()", "msg");
+//
+//            }
+//        });
     }
 
     private void setViewsVisible(){
         mPlayGame.setVisibility(View.INVISIBLE);
         mTextLives.setVisibility(View.VISIBLE);
         mTextPoints.setVisibility(View.VISIBLE);
-        mClickToStart.setVisibility(View.VISIBLE);
+        //mClickToStart.setVisibility(View.VISIBLE);
         mTopBorder.setVisibility(View.VISIBLE);
-        //mGameCanvas.setVisibility(View.VISIBLE);
         mGanvas.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
+//    @Override
+//    public void onSensorChanged(SensorEvent event) {
+//
+//    }
+//
+//    @Override
+//    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+//
+//    }
 }
