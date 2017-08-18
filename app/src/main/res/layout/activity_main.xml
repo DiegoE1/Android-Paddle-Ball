@@ -25,6 +25,17 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
+            <Button
+                android:id="@+id/button_restart_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:text="@string/restart_game"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
             <TextView
                 android:id="@+id/tv_paddle_ball"
                 android:layout_width="wrap_content"
@@ -74,41 +85,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_paddle_ball"/>
         </android.support.constraint.ConstraintLayout>
 
-    <!--<com.example.android.android_paddle_ball.MyImageView-->
-        <!--android:id="@+id/game_canvas"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="420dp"-->
-        <!--android:visibility="invisible"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"/>-->
-
-    <com.example.android.android_paddle_ball.GameView
-        android:id="@+id/ganvas"
-        android:layout_width="0dp"
-        android:layout_height="420dp"
-        android:visibility="invisible"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-
-    </com.example.android.android_paddle_ball.GameView>
-
-    <Button
-        android:id="@+id/button_click_to_start"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/click_to_start"
-        android:textSize="22sp"
-        android:textColor="@android:color/white"
-        android:visibility="invisible"
-        android:background="@android:color/transparent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
+        <com.example.android.android_paddle_ball.GameView
+            android:id="@+id/ganvas"
+            android:layout_width="0dp"
+            android:layout_height="420dp"
+            android:visibility="invisible"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+        </com.example.android.android_paddle_ball.GameView>
 
 </android.support.constraint.ConstraintLayout>

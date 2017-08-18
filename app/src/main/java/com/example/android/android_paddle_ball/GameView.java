@@ -3,22 +3,20 @@ package com.example.android.android_paddle_ball;
 import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import static android.view.MotionEvent.INVALID_POINTER_ID;
 
 /**
  * Created by diegoespinosa on 8/9/17.
  */
 
-public class GameView extends SurfaceView implements SurfaceHolder.Callback
+public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
-{
-
-
-    private static final String TAG = GameView.class.getName();
     private GameThread mThread;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
@@ -29,25 +27,73 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
         setFocusable(true);
 
         mThread = new GameThread(holder, context, new Handler());
-
     }
 
+    //Touch event listener that gives data to GameState
+    float mLastTouchX;
+    float mLastTouchY;
+    int mActivePointerId = INVALID_POINTER_ID;
+    int mPosX, mPosY;
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if(mThread.getGameState().isGameOver == false) {
-            Log.d(TAG, "onTouchEvent() called with: event = [" + event + "]");
+
             switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                case MotionEvent.ACTION_MOVE:
-                    int x = (int) event.getX();
-                    int y = (int) event.getY();
-                    mThread.getGameState().onTouch(x, y);
+                case MotionEvent.ACTION_DOWN:{
+                    final int pointerIndex = MotionEventCompat.getActionIndex(event);
+                    final float x = MotionEventCompat.getX(event, pointerIndex);
+                    final float y = MotionEventCompat.getY(event, pointerIndex);
+
+                    mLastTouchX = x;
+                    mLastTouchY = y;
+
+                    mActivePointerId = MotionEventCompat.getPointerId(event, 0);
+                    break;
+                }
+                case MotionEvent.ACTION_MOVE: {
+                    final int pointerIndex = MotionEventCompat.findPointerIndex(event, mActivePointerId);
+
+                    final float x = MotionEventCompat.getX(event, pointerIndex);
+                    final float y = MotionEventCompat.getY(event, pointerIndex);
+
+                    final float dx = x - mLastTouchX;
+                    final float dy = y - mLastTouchY;
+
+                    mPosX += dx;
+                    mPosY += dy;
+
+                    mThread.getGameState().onTouch(mPosX, mPosY);
+
+                    mLastTouchX = x;
+                    mLastTouchY = y;
+                    break;
+                }
+                case MotionEvent.ACTION_UP: {
+                    mActivePointerId = INVALID_POINTER_ID;
+                    break;
+                }
+
+                case MotionEvent.ACTION_CANCEL: {
+                    mActivePointerId = INVALID_POINTER_ID;
+                    break;
+                }
+
+                case MotionEvent.ACTION_POINTER_UP: {
+
+                    final int pointerIndex = MotionEventCompat.getActionIndex(event);
+                    final int pointerId = MotionEventCompat.getPointerId(event, pointerIndex);
+
+                    if (pointerId == mActivePointerId) {
+                        final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
+                        mLastTouchX = MotionEventCompat.getX(event, newPointerIndex);
+                        mLastTouchY = MotionEventCompat.getY(event, newPointerIndex);
+                        mActivePointerId = MotionEventCompat.getPointerId(event, newPointerIndex);
+                    }
+                    break;
+                }
             }
         }
-//        int x = (int)event.getX();
-//        int y = (int)event.getY();
-//        mThread.getGameState().onTouch(x,y);
-        return super.onTouchEvent(event);
+        return true;
     }
 
     @Override

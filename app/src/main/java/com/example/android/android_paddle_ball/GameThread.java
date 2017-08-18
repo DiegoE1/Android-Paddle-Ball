@@ -35,7 +35,7 @@ public class GameThread extends Thread {
             mSurfaceHolder.unlockCanvasAndPost(canvas);
         }
     }
-
+    //Used to get info from GameState
     public GameState getGameState(){
         return mState;
     }
